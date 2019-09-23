@@ -12,6 +12,8 @@
  * @param {number} target
  * @return {number[]}
  */
+
+/** v1 */
 var twoSum = function(nums, target) {
   var l = nums.length;
   var hash = {};
@@ -20,5 +22,17 @@ var twoSum = function(nums, target) {
       return [hash[nums[i]], i];
     }
     hash[target - nums[i]] = i;
+  }
+};
+
+/** v2 */
+var twoSum = function(nums, target) {
+  var map = new Map();
+  var l = nums.length;
+  for (var i = 0; i < l; i++) {
+    if (map.has(target - nums[i])) {
+      return [i, map.get(target - nums[i])];
+    }
+    map.set(nums[i], i);
   }
 };
