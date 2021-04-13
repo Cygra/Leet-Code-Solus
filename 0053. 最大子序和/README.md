@@ -1,0 +1,54 @@
+# 53. 最大子序和
+
+给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+
+示例 1：
+
+```js
+输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
+输出：6
+解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。
+```
+
+来源：力扣（LeetCode）
+
+链接：<https://leetcode-cn.com/problems/maximum-subarray>
+
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+---
+
+从左边开始逐个加，结果是 `sum`
+
+- 如果加完结果还是正数，就继续加
+- 否则前面的舍弃，从现在的 `num` 开始加
+
+每加一次，`result` 取当前 `sum` 和当前 `result` 里的大值
+
+换种说法，最大子序和的这个子序，其 **左边子序的和** 和 **右边子序的和** 都是负数
+
+- `if (sum <= 0)` 这里保证了左边是负数子序
+  - 因为一旦发现 `sum` 是负数，这个结果就被舍去了
+- `Math.max` 保证了右边是负数子序
+  - 如果右边是正数子序，`sum` 比当前的 `result` 大，`result` 就会换成当前的 `sum` 的值
+  - 右边是负数子序，`sum` 始终比 `result` 小，`result` 就停止在了最大子序的右端点
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function(nums) {
+  let result = nums[0], sum = 0
+  nums.forEach((num) => {
+    if (sum <= 0) {
+      sum = num
+    } else {
+      sum += num
+    }
+    result = Math.max(sum, result)
+  })
+  return result
+};
+
+```
