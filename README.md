@@ -32,3 +32,35 @@ Leet Code Solutions Repo
 - 涉及到逆序的，考虑用栈
 
 - 为了快速知道一个元素在不在一个 Array里，可以用 Set
+
+---
+
+### 二分查找
+
+```js
+// 升序里找第一个 target
+var left = 0
+var right = nums.length - 1
+while (left <= right) {
+  const mid = Math.floor((left + right) / 2)
+  if (nums[mid] < target) {
+    left = mid + 1
+  } else {
+    right = mid - 1
+  }
+}
+```
+
+```js
+// 升序里找第一个比 target 大的
+var left = 0
+var right = nums.length - 1
+while (left <= right) {
+  const mid = Math.floor((left + right) / 2)
+  if (nums[mid] > target) {
+    right = mid - 1
+  } else {
+    left = mid + 1
+  }
+}
+```
