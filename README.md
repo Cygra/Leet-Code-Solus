@@ -65,5 +65,23 @@ while (left <= right) {
 }
 ```
 
-类似题：
+### 回溯
+
+```md
+result = []
+def backtrack(当前, 选择列表):
+  if 满足结束条件:
+    result.add(当前)
+  else {
+    for 选择 in 选择列表:
+      backtrack(当前 + 选择, 新的选择列表)
+    }
+```
+
+---
+
+### 类似题
+
 56-57
+
+17 - 22 回溯
