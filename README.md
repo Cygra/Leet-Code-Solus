@@ -85,3 +85,11 @@ def backtrack(当前, 选择列表):
 56-57
 
 17 - 22 - 46 - 78 回溯
+
+### java
+
+```java
+Queue<TreeNode> queue = new LinkedList<TreeNode>();
+queue.offer(x);
+x = queue.poll();
+```
