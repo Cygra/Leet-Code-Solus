@@ -1,34 +1,31 @@
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
-
-import javax.swing.tree.TreeNode;
-
-import java.util.ArrayList;
+ public class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
 
 
 class Solution {
-    public boolean isSymmetric(TreeNode root) {
-        Queue<TreeNode> qu = new LinkedList<TreeNode>();
-        qu.offer(root.left);
-        qu.offer(root.right);
-        while (!qu.isEmpty()) {
-            TreeNode p = qu.poll();
-            TreeNode q = qu.poll();
+    public boolean isValidBST(TreeNode root) {
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
 
-            if (p == null && q == null) {
-            } else if (p == null || q == null || p.val != q.val) {
-                return false;
-            } else {
-                qu.offer(q.left);
-                qu.offer(p.right);
-                qu.offer(p.left);
-                qu.offer(q.right);
-            }
-
+    public boolean isValidBST(TreeNode root, long lower, long upper) {
+        if (root == null) {
+            return true;
         }
-        return true;
+
+        return root.val > lower &&
+            root.val < upper &&
+            isValidBST(root.left, lower, root.val) &&
+            isValidBST(root.right, root.val, upper);
     }
 
 
