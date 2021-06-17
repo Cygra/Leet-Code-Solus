@@ -1,4 +1,9 @@
- public class TreeNode {
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
@@ -11,25 +16,25 @@
     }
 }
 
-
 class Solution {
-    public boolean isValidBST(TreeNode root) {
-        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
-    }
+    public void flatten(TreeNode root) {
+        while (root != null) {
+            TreeNode node = root.left;
+            if (node != null) {
+                while (node != null && node.right != null) {
+                    node = node.right;
+                }
 
-    public boolean isValidBST(TreeNode root, long lower, long upper) {
-        if (root == null) {
-            return true;
+                node.right = root.right;
+                root.right = root.left;
+                root.left = null;
+            }
+            root = root.right;
         }
-
-        return root.val > lower &&
-            root.val < upper &&
-            isValidBST(root.left, lower, root.val) &&
-            isValidBST(root.right, root.val, upper);
     }
 
 
     public static void main(String[] args) {
-        // System.out.println(new Solution().longestConsecutive( new int[] {100,4,200,1,3,2}));
+        // System.out.println(new Solution().numTrees(4));
     }
 }

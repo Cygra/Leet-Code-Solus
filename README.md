@@ -89,6 +89,7 @@ def backtrack(当前, 选择列表):
 ### java
 
 ```java
+// 队列
 Queue<TreeNode> queue = new LinkedList<TreeNode>();
 queue.offer(x);
 x = queue.poll();
